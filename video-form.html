@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Video Form</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">	
+</head>
+<body>
+	<fieldset>
+		<legend>Video Form</legend>
+		<form action="" method="post">
+			<div class="row">
+				<label>Video ID: </label>
+				<div class="form-control">
+					<input id="video-id" type="text" name="video-id">
+					<span id="video-id-error" class="msg-error"></span>
+				</div>
+			</div>
+			<div class="row">
+				<label>Video Name: </label>
+				<div class="form-control">
+					<input class="w-50" id="video-name" type="text" name="video-name">
+				</div>
+			</div>
+			<div class="row">
+				<label>Video Description: </label>
+				<div class="form-control">
+					<textarea class="w-30" name="video-description"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<label>Video Keyword: </label>
+				<div class="form-control">
+					<input class="w-30" type="text" name="video-keyword">
+				</div>
+			</div>
+			<div class="row">
+				<label>Video Category: </label>
+				<div class="form-control">
+					<input type="checkbox" name="video-category"> Game
+					<input type="checkbox" name="video-category"> Music
+					<input type="checkbox" name="video-category"> Developer
+					<input type="checkbox" name="video-category"> Others	
+				</div>
+			</div>
+			<div class="row">
+				<label>Status</label>
+				<div class="form-control">
+					<input type="checkbox" name="status"> Active
+				</div>
+			</div>
+			<div class="row">
+				<label>&nbsp;</label>
+				<div class="form-control">
+					<input type="submit" name="" value="Submit" onclick="return isValidForm();">
+					<input type="reset" name="" value="Reset">
+				</div>
+			</div>
+		</form>
+	</fieldset>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+</body>
+</html>
