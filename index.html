@@ -2,22 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-            <link href=".//css/main-style.css" rel="stylesheet">
-                <link href=".//css/form.css" rel="stylesheet">
-                    <script src=".//js/angular.js" type="text/javascript">
-                    </script>
-                    <script src=".//js/jquery-3.2.1.min.js" type="text/javascript">
-                    </script>
-                    <script src=".//js/myjs.js" type="text/javascript">
-                    </script>
-                    <title>
-                        LTV C1707G
-                    </title>
-                </link>
-            </link>
         </meta>
+        <link href="./css/main-style.css" rel="stylesheet">
+        </link>
+        <link href="./css/form.css" rel="stylesheet">
+        </link>
+        <title>
+            LTV C1707G
+        </title>
     </head>
-    <body onload="smoothScroll()">
+    <body onload="smoothScroll();">
         <div class="global-container">
             <div class="sidenav" id="mySidenav">
                 <a href="#anchor-about">
@@ -30,7 +24,7 @@
                 <a href="#anchor-view">
                     <div class="sidenav-component" id="view">
                         <span>
-                            Hóng báo
+                            Thêm video
                         </span>
                     </div>
                 </a>
@@ -49,7 +43,7 @@
                             <div class="center">
                                 <div class="logo-slogan">
                                     <span>
-                                        I'm
+                                        myTube
                                     </span>
                                     <!-- <span class="text-animation">l</span> -->
                                 </div>
@@ -60,211 +54,177 @@
                         </div>
                     </div>
                 </div>
-                <div class="main">
-                    <div class="homepage no-box-shadow">
-                        <div class="info-nav">
-                            <div class="col2 no-border">
-                                <h2>
-                                    Giới thiệu
-                                </h2>
-                                <div class="content-container">
-                                    <div class="content">
-                                        <span>
-                                            <p>
-                                                Xin tự giới thiệu mình là
-                                                <strong>
-                                                    Lâm
-                                                </strong>
-                                                một newbie coder đến từ Việt Nam.
-                                                <br/>
-                                                <br/>
-                                                Hiện đang là CEO của tập đoàn công nghệ BP (Bốc Phét)!
-                                                <br/>
-                                                <br/>
-                                                Mình đang hướng tới mục tiêu trở thành tập đoàn công nghệ dẫn đầu xu hướng
-                                                , nâng tầm giá trị vị trí của Việt Nam trên bản đồ công nghệ thế giới :D
-                                            </p>
-                                        </span>
-                                    </div>
-                                    <a href="#anchor-about">
-                                        Thông tin chi tiết
-                                    </a>
+                <div class="homepage mar-top10 full-screen">
+                    <div class="add-video-form">
+                        <fieldset>
+                            <legend>
+                                Thêm video
+                            </legend>
+                            <form accept-charset="utf-8" action="index_submit" method="get">
+                                <div class="trans-background view" id="anchor-view">
+                                    <form action="" method="post">
+                                        <div class="row">
+                                            <label for="video-id">
+                                                Video ID:
+                                            </label>
+                                            <div class="form-control">
+                                                <input id="video-id" name="video-id" placeholder="Nhập video id" required="" type="text"/>
+                                                <span class="msg-error" id="video-id-error">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="video-name">
+                                                Video Name:
+                                            </label>
+                                            <div class="form-control">
+                                                <input class="w-50" id="video-name" name="video-name" placeholder="Nhập tên video" required="" type="text">
+                                                    <span class="msg-error" id="video-name-error">
+                                                    </span>
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="video-description">
+                                                Video Description:
+                                            </label>
+                                            <div class="form-control">
+                                                <textarea class="w-30" id="video-description" name="video-description" onload="" placeholder="Mô tả video">
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="video-keywords">
+                                                Video Keyword:
+                                            </label>
+                                            <div class="form-control">
+                                                <input class="w-30" id="video-keywords" name="video-keywords" placeholder="Các keywords giúp tăng hiệu quả xuất hiện video" required="" type="text">
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="video-genre">
+                                                Genre:
+                                            </label>
+                                            <div class="form-control">
+                                                <input class="w-30" id="video-genre" name="video-genre" placeholder="Thể loại video" type="text">
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="form-video-category">
+                                                Video Category:
+                                            </label>
+                                            <div class="form-control" id="form-video-category">
+                                                <input name="video-category" type="checkbox" value="Game"/>
+                                                Game
+                                                <input name="video-category" type="checkbox" value="Music"/>
+                                                Music
+                                                <input name="video-category" type="checkbox" value="Trailer"/>
+                                                Trailer
+                                                <input name="video-category" type="checkbox" value="Others"/>
+                                                Others
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="status">
+                                                Status
+                                            </label>
+                                            <div class="form-control">
+                                                <input name="status" type="checkbox">
+                                                    Active
+                                                </input>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="invisible">
+                                                action
+                                            </label>
+                                            <div class="form-control">
+                                                <input name="Submit" onclick="return isValidForm();" type="button" value="Submit"/>
+                                                <input name="resetButton" type="reset" value="Reset"/>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
-                            <div class="col2 no-border">
-                                <h2>
-                                    Edu
-                                </h2>
-                                <div class="content-container" id="thietkeweb">
-                                    <div class="content">
-                                        <span>
-                                            <p>
-                                                2015 at Haui University
-                                                <br/>
-                                                Hệ: Tiến sỹ công nghệ thông tin
-                                                <br/>
-                                                Loại: đủ điểm tốt nghiệp
-                                                <hr/>
-                                                2015-2017 Tokyo College
-                                                <hr/>
-                                                Now FPT Academy International
-                                            </p>
-                                        </span>
-                                    </div>
-                                    <a href="#anchor-design">
-                                        My School
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col2 no-border">
-                                <h2>
-                                    Kỹ Năng
-                                </h2>
-                                <div class="content-container">
-                                    <div class="content">
-                                        <span>
-                                            <p>
-                                                Kinh nghiệm lâu năm trong lĩnh vực tiêu tiền.
-                                                <br/>
-                                                <br/>
-                                                Thành thạo Java,C#, Html, Css3, AngularJs....
-                                                <br/>
-                                                <br/>
-                                                2 Năm làm việc tại MH software
-                                                <br/>
-                                                Làm việc nhóm hiệu quả
-                                            </p>
-                                        </span>
-                                    </div>
-                                    <a href="#">
-                                        My skills
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                            </form>
+                        </fieldset>
                     </div>
-                    <div class="homepage mar-top10 about" id="anchor-about">
-                        <div>
-                            <div class="about-content trans-background">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nesciunt consequatur eius a reprehenderit beatae est, fugit minima iste ullam dicta quod tempora perspiciatis, quibusdam doloremque consectetur accusamus quam asperiores!
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nesciunt consequatur eius a reprehenderit beatae est, fugit minima iste ullam dicta quod tempora perspiciatis, quibusdam doloremque consectetur accusamus quam asperiores!
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nesciunt consequatur eius a reprehenderit beatae est, fugit minima iste ullam dicta quod tempora perspiciatis, quibusdam doloremque consectetur accusamus quam asperiores!
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nesciunt consequatur eius a reprehenderit beatae est, fugit minima iste ullam dicta quod tempora perspiciatis, quibusdam doloremque consectetur accusamus quam asperiores!
-                                </p>
-                            </div>
-                            <div class="design-img-container">
-                                <div id="design-img">
-                                    <img alt="apple Inc" src=".//rs/ltv.jpg"/>
-                                </div>
-                                <div class="name-info">
-                                    <span>
-                                        Ảnh: <strong>Lâm</strong> (nguồn fb cá nhân)
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="homepage mar-top10 ">
-                        <div class="trans-background view" id="anchor-view">
-                            <br/>
-                            <h2>
-                                Úc tiến hành xây dựng nhà máy nhiệt điện mặt trời lớn nhất thế giới
-                            </h2>
-                            <p>
-                                Công nghệ này dự kiến sẽ chiếm một phần tương đối lớn trong mạng lưới điện của tương lai.
-                                <br>
-                                    Cuộc hành trình đến với những nguồn năng lượng sạch trên thế giới mới đây đã tiến thêm một bước nữa, khi mà chính phủ Úc mới đây đã đồng ý cho phép xây dựng nhà máy điện mặt trời lớn nhất thế giới tại Port Augusta, phía nam nước Úc. Nhà máy này dự kiến sẽ đạt công suất khoảng 150 megawatt.
-                                    <br/>
-                                    Bên cạnh việc cung cấp thêm cơ hội việc làm cho 650 công nhân xây dựng, nhà máy này sẽ cung cấp toàn bộ lượng điện năng cần thiết cho các công trình chính phủ - từ đó có thể giúp cho việc sử dụng điện mặt trời dễ dàng trở nên phổ biến hơn trong tương lai. Chi phí cho công trình này rơi vào khoảng 510 triệu USD, nhà máy điện mặt trời nói trên dự kiến sẽ được khởi công vào đầu năm sau và hoàn thiện vào năm 2020.
-                                    <br/>
-                                </br>
-                            </p>
-                            <center>
-                                <img alt="image" src="././rs/image-1502862906345.png">
-                                </img>
-                            </center>
-                            <p style="font-style: italic;">
-                                "Một trong những điểm nổi trội nhất của nguồn năng lượng mặt trời đó là khả năng cung cấp điện năng theo nhu cầu, thông qua việc lưu trữ năng lượng nhiệt để chạy các tuốc bin cung cấp điện," giáo sư nghiên cứu về các nguồn năng lượng duy trì Wasim Saman chia sẻ.
-                                <br>
-                                    "Phương pháp này có hiệu quả tốt hơn nhiều so với việc lưu trữ năng lượng bằng pin và ắc quy."
-                                </br>
-                            </p>
-                            <p>
-                                Các nhà máy điện mặt trời thông thường sẽ chuyển hóa trực tiếp ánh nắng mặt trời thành điện năng, do đó họ cần những tấm pin lớn để lưu trữ điện năng dư thừa cho những lúc mặt trời chiếu sáng. Tuy nhiên, những nhà máy nhiệt điện mặt trời sẽ sử dụng các tấm gương để tập trung ánh sáng vào trong một hệ thống nhiệt.
-
-Hệ thống nhiệt này bao gồm nhiều thiết bị khác nhau, nhưng về nguyên lý hoạt động cơ bản thì muối nóng chảy sẽ được nung nóng - và nhiệt năng sinh ra sẽ được sử dụng để đun nước, tạo ra hơi nước quay tuốc bin để sinh ra điện năng.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer" id="anchor-contact">
-                <div class="footer-col1">
-                    LTV Corpotation
-                    <sup>
-                        ©
-                    </sup>
-                    <br/>
-                    <hr/>
-                    Số 1002 Tôn Thất Thuyết Hà Nội
-                    <br/>
-                    <hr/>
-                    Fax: 024 333 434
-                    <br/>
-                    <hr/>
-                    Điện thoại: 024 555 666 máy lẻ /78
-                    <br/>
-                    <hr/>
-                    ltv@ltvcoporation.com
-                </div>
-                <div class="footer-col2">
-                    Giới thiệu
-                |
-                Điều khoản
-                    <br/>
-                    Quảng cáo
-                |
-                FAQs
-                    <br/>
-                    Copyright
-                |
-                ltv VIP
-                    <br/>
-                    Ứng dụng
-                |
-                Góp ý
-                    <br/>
-                    APIs
-                |
-                Liên hệ
-                </div>
-                <div class="contact-form" ng-app="contact">
-                    <form action="" method="Post">
-                        <label for="fname">
-                            Tên của bạn
-                        </label>
-                        <input name="" placeholder="Tên của bạn" required="" type="text" value="">
-                            <label for="lname">
-                                Điện thoại
-                            </label>
-                            <input name="tel" placeholder="Số điện thoại" required="" type="text" value="">
-                                <label for="email">
-                                    Email
-                                </label>
-                                <input id="email" name="email" placeholder="email liên hệ" required="" type="text">
-                                    <label for="subject">
-                                        Subject
-                                    </label>
-                                    <textarea ngModel="string" name="string" required ngRequired="string" ngMinlength="number" ngMaxlength="number" ngPattern="string" ngChange="string" placeholder="Nhập nội dung tại đây..." style="height: 100px"></textarea>
-                                    <input type="submit" value="Submit">
-                                    </input>
-                                </input>
-                            </input>
-                        </input>
-                    </form>
                 </div>
             </div>
         </div>
+        <div class="footer" id="anchor-contact">
+            <div class="footer-col1">
+                LTV Corpotation
+                <sup>
+                    ©
+                </sup>
+                <br/>
+                <hr/>
+                Số 1002 Tôn Thất Thuyết Hà Nội
+                <br/>
+                <hr/>
+                Fax: 024 333 434
+                <br/>
+                <hr/>
+                Điện thoại: 024 555 666 máy lẻ /78
+                <br/>
+                <hr/>
+                ltv@ltvcoporation.com
+            </div>
+            <div class="footer-col2">
+                Giới thiệu
+                |
+                Điều khoản
+                <br/>
+                Quảng cáo
+                |
+                FAQs
+                <br/>
+                Copyright
+                |
+                ltv VIP
+                <br/>
+                Ứng dụng
+                |
+                Góp ý
+                <br/>
+                APIs
+                |
+                Liên hệ
+            </div>
+            <div class="contact-form" ng-app="contact">
+                <form action="" method="Post">
+                    <label for="fname">
+                        Tên của bạn
+                    </label>
+                    <input name="" placeholder="Tên của bạn" required="" type="text" value="">
+                        <label for="lname">
+                            Điện thoại
+                        </label>
+                        <input name="tel" placeholder="Số điện thoại" required="" type="text" value="">
+                            <label for="email">
+                                Email
+                            </label>
+                            <input id="email" name="email" placeholder="email liên hệ" required="" type="text">
+                                <label for="subject">
+                                    Subject
+                                </label>
+                                <textarea name="string" ngchange="string" ngmaxlength="number" ngminlength="number" ngmodel="string" ngpattern="string" ngrequired="string" placeholder="Nhập nội dung tại đây..." required="" style="height: 100px">
+                                </textarea>
+                                <input type="submit" value="Submit">
+                                </input>
+                            </input>
+                        </input>
+                    </input>
+                </form>
+            </div>
+        </div>
     </body>
+    <script src="./js/jquery-3.2.1.min.js" type="text/javascript">
+    </script>
+    <script src="./js/smoothScroll.js" type="text/javascript">
+    </script>
+    <script src="./js/script.js" type="text/javascript">
+    </script>
 </html>
