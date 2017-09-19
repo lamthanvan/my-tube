@@ -1,4 +1,8 @@
+<<<<<<< HEAD
  var apiUrl = "http://youtube-video-api-1608.appspot.com/youtube/api";
+=======
+ var apiUrl;
+>>>>>>> 653b310ecda769a22729d5782f313ff9125f4fcd
  $(document).ready(function() {
      apiUrl = "http://youtube-video-api-1608.appspot.com/youtube/api";
      var videoId, name, description, keywords, genre, category;
@@ -7,10 +11,14 @@
 
  function init() {
      // Clear forms here
+<<<<<<< HEAD
      var txtArea = document.getElementById("video-description");
      if (txtArea) {
          txtArea = "";
      }
+=======
+     document.getElementById("video-description").value = "";
+>>>>>>> 653b310ecda769a22729d5782f313ff9125f4fcd
  }
  //check valid form
  function isValidForm() {
@@ -78,6 +86,7 @@
          authorName: "lamtv",
          authorEmail: "lamtvd00516@fpt.edu.vn",
          birthday: videoBOD
+<<<<<<< HEAD
      };
      console.log(video);
      // console.log(apiUrl);
@@ -115,6 +124,10 @@
      // for(var i in rsData)
      // console.log(rsData);
      // console.log(apiUrl+'?page=' + page + '&limit=' + limit);
+=======
+     }
+     
+>>>>>>> 653b310ecda769a22729d5782f313ff9125f4fcd
  }
 
  function clear() {
