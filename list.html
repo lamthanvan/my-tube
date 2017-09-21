@@ -7,6 +7,10 @@
         </link>
         <link href="./css/form.css" rel="stylesheet">
         </link>
+        <link href="./css/player.css" rel="stylesheet">
+        </link>
+        <link href="./css/pagination.css" rel="stylesheet">
+        </link>
         <title>
             LTV C1707G
         </title>
@@ -24,7 +28,7 @@
                 <a href="#anchor-view">
                     <div class="sidenav-component" id="view">
                         <span>
-                            Thêm video
+                            video
                         </span>
                     </div>
                 </a>
@@ -55,16 +59,43 @@
                     </div>
                 </div>
                 <div class="homepage mar-top10 full-screen">
-                    <div class="trans-background view" id="anchor-view">
-                        <section id="video-list">
-                        <h2>Video list</h2>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/vqVjGyvuO6s" frameborder="0" allowfullscreen></iframe>
+                    <div class="trans-background view" id="list-videoPanel">
+                        <section>
+                            <div class="gl-pl-container" id="video-list">
+                            </div>
+                            <div class="pagination-frame">
+                                <div class="pagination" id="pageController">
+                                   <!--  <a href="#">
+                                        «
+                                    </a>
+                                    <a href="#">
+                                        1
+                                    </a>
+                                    <a class="active" href="#">
+                                        2
+                                    </a>
+                                    <a href="#">
+                                        3
+                                    </a>
+                                    <a href="#">
+                                        4
+                                    </a>
+                                    <a href="#">
+                                        5
+                                    </a>
+                                    <a href="#">
+                                        6
+                                    </a>
+                                    <a href="#">
+                                        »
+                                    </a> -->
+                                </div>
+                            </div>
                         </section>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="footer" id="anchor-contact">
             <div class="footer-col1">
                 LTV Corpotation
@@ -131,6 +162,24 @@
                     </input>
                 </form>
             </div>
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close" id="modal-close">
+                        ×
+                    </span>
+                    <span class="restore" id="modal-restore">
+                        <!-- <img style="width: 20px;" src="rs/maximize-2-512.png" alt=""> -->
+                    </span>
+                    <span class="minimize" id="modal-minimize">
+                        _
+                    </span>
+                    <div id="frame-play">
+                    </div>
+                </div>
+            </div>
+            <!-- end modal -->
         </div>
     </body>
     <script src="./js/jquery-3.2.1.min.js" type="text/javascript">
@@ -139,8 +188,8 @@
     </script>
     <script src="./js/script.js" type="text/javascript">
     </script>
-
     <script>
-        loadData(1,100);
+        // loadData(1,10);     
+        pagninate(location.href);
     </script>
 </html>

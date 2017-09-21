@@ -72,6 +72,7 @@
 .add-video-form input[type=button]:hover {
     background-color: #6CD967;
 }
+
 .add-video-form input[type=reset] {
     background-color: #F20649;
     color: white;
@@ -80,13 +81,13 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
 .add-video-form input[type=reset]:hover {
     background-color: #FE6698;
 }
-.add-video-form textarea{
-    
-   
-}
+
+.add-video-form textarea {}
+
 .add-video-form {
     width: auto;
 }
@@ -98,8 +99,10 @@
 
 label {
     float: left;
-    width: 15%;
+    width: 20%;
+    padding-right: 5px;
 }
+
 
 /*.form-control input {
     border-radius: 2px;
@@ -119,6 +122,10 @@ label {
 
 .msg-success {
     color: green;
+}
+
+.w-75 {
+    width: 75%;
 }
 
 .w-50 {
