@@ -1,256 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        </meta>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <link href="./css/main-style.css" rel="stylesheet">
-        </link>
-        <link href="./css/form.css" rel="stylesheet">
-        </link>
-        <link href="./css/player.css" rel="stylesheet">
-        </link>
+        <meta charset="utf-8" content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <link href="./css/main-style.css" rel="stylesheet"/>
+        <link href="./css/form.css" rel="stylesheet"/>
+        <link href="./css/video.css" rel="stylesheet"/>
+        <link href="./css/pagination.css" rel="stylesheet"/>
+        <link href="./css/responsive.css" rel="stylesheet"/>
+        <link href="./css/modal.css" rel="stylesheet"/>
+        <link href="./css/loader.css" rel="stylesheet"/>
         <title>
-            LTV C1707G
+            iTube
         </title>
     </head>
-    <body onload="smoothScroll();">
-        <div class="global-container">
-            <div class="sidenav" id="mySidenav">
-                <a href="#anchor-about">
-                    <div class="sidenav-component" id="about">
-                        <span>
-                            Về tôi
-                        </span>
-                    </div>
-                </a>
-                <a href="#anchor-view">
-                    <div class="sidenav-component" id="view">
-                        <span>
-                            Thêm video
-                        </span>
-                    </div>
-                </a>
-                <a href="#anchor-contact">
-                    <div class="sidenav-component" id="contact">
-                        <span>
-                            Liên hệ
-                        </span>
-                    </div>
-                </a>
-            </div>
-            <div class="container">
-                <div class="header">
-                    <div class="banner">
-                        <div class="slogan center" id="slogan">
-                            <div class="center">
-                                <div class="logo-slogan">
-                                    <span>
-                                        myTube
-                                    </span>
-                                    <!-- <span class="text-animation">l</span> -->
-                                </div>
-                                <div class="logo-animation center">
-                                </div>
-                                <!--    ltv -->
-                            </div>
-                        </div>
-                    </div>
+    <body>
+        <div class="header">
+            <div id="topnav-container">
+                <div class="topnav" id="myTopnav">
+                    <a href="#home">
+                        # iTube
+                    </a>
+                    <a href="#add">
+                        Thêm
+                    </a>
+                    <a href="#video">
+                        Videos
+                    </a>
+                    <a href="#video">
+                        Chính sách
+                    </a>
+                    <a href="#about">
+                        Liên hệ
+                    </a>
+                    <a class="icon" href="javascript:void(0);" onclick="topBarResponsive()">
+                        ☰
+                    </a>
                 </div>
-                <div class="homepage mar-top10 ">
-                    <div class="add-video-form">
-                        <fieldset>
-                            <legend>
-                                Thêm video
-                            </legend>
-                            <form accept-charset="utf-8" action="index_submit" method="get">
-                                <div class="trans-background mini-add-video-box" id="anchor-view">
-                                    <form action="" method="post">
-                                        <div class="row">
-                                            <label for="video-id">
-                                                Video ID:
-                                            </label>
-                                            <div class="form-control">
-                                                <input id="video-id" name="video-id" placeholder="Nhập video id" required="" type="text"/>
-                                                <span class="msg-error" id="video-id-error">
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="video-name">
-                                                Video Name:
-                                            </label>
-                                            <div class="form-control">
-                                                <input class="w-75" id="video-name" name="video-name" placeholder="Nhập tên video" required="" type="text">
-                                                    <span class="msg-error" id="video-name-error">
-                                                    </span>
-                                                </input>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="video-description">
-                                                Video Description:
-                                            </label>
-                                            <div class="form-control">
-                                                <textarea id="video-description" name="video-description" onload="" placeholder="Mô tả video"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="video-keywords">
-                                                Video Keyword:
-                                            </label>
-                                            <div class="form-control">
-                                                <input class="w-75" id="video-keywords" name="video-keywords" placeholder="Các keywords giúp tăng hiệu quả xuất hiện video" required="" type="text">
-                                                </input>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="video-genre">
-                                                Genre:
-                                            </label>
-                                            <div class="form-control">
-                                                <input class="w-50" id="video-genre" name="video-genre" placeholder="Thể loại video" type="text">
-                                                </input>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="form-video-category">
-                                                Video Category:
-                                            </label>
-                                            <div class="form-control" id="form-video-category">
-                                                <input name="video-category" type="checkbox" value="Game"/>
-                                                Game
-                                                <input name="video-category" type="checkbox" value="Music"/>
-                                                Music
-                                                <input name="video-category" type="checkbox" value="Trailer"/>
-                                                Trailer
-                                                <input name="video-category" type="checkbox" value="Others"/>
-                                                Others
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="status">
-                                                Status
-                                            </label>
-                                            <div class="form-control">
-                                                <input name="status" type="checkbox">
-                                                    Active
-                                                </input>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label class="invisible">
-                                                action
-                                            </label>
-                                            <div class="form-control">
-                                                <input name="Submit" onclick="return isValidForm();" type="button" value="Submit"/>
-                                                <input name="resetButton" type="reset" value="Reset"/>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="trans-background mini-lstvid-fr" id="video-list">
-                                </div>
-                                
-                            </form>
-                        </fieldset>
-                    </div>
+            </div>
+            <div id="top-banner">
+                <div id="top-banner-slogan">
+                    <span>
+                        #iTube chia sẻ video yêu thích.
+                    </span>
                 </div>
             </div>
         </div>
-        <div class="footer" id="anchor-contact">
-            <div class="footer-col1">
-                LTV Corpotation
-                <sup>
-                    ©
-                </sup>
-                <br/>
-                <hr/>
-                Số 1002 Tôn Thất Thuyết Hà Nội
-                <br/>
-                <hr/>
-                Fax: 024 333 434
-                <br/>
-                <hr/>
-                Điện thoại: 024 555 666 máy lẻ /78
-                <br/>
-                <hr/>
-                ltv@ltvcoporation.com
+        <div class="row" id="main">
+            <div class="col-2 menu trans-background">
+                <ul>
+                    <li onclick="addVideoModal();">
+                        Thêm video mới
+                    </li>
+                    <li onclick="deleteVideo('1vLWmxeB99o');">
+                        Xóa thử
+                    </li>
+                    <li>
+                        Danh sách video
+                    </li>
+                    <li>
+                        Chính sách người dùng
+                    </li>
+                    <li>
+                        Liên hệ
+                    </li>
+                </ul>
             </div>
-            <div class="footer-col2">
-                Giới thiệu
-                |
-                Điều khoản
-                <br/>
-                Quảng cáo
-                |
-                FAQs
-                <br/>
-                Copyright
-                |
-                ltv VIP
-                <br/>
-                Ứng dụng
-                |
-                Góp ý
-                <br/>
-                APIs
-                |
-                Liên hệ
+            <div class="col-0">
             </div>
-            <div class="contact-form" ng-app="contact">
-                <form action="" method="Post">
-                    <label for="fname">
-                        Tên của bạn
-                    </label>
-                    <input name="" placeholder="Tên của bạn" required="" type="text" value="">
-                        <label for="lname">
-                            Điện thoại
-                        </label>
-                        <input name="tel" placeholder="Số điện thoại" required="" type="text" value="">
-                            <label for="email">
-                                Email
-                            </label>
-                            <input id="email" name="email" placeholder="email liên hệ" required="" type="text">
-                                <label for="subject">
-                                    Subject
+            <div class="col-9 " id="main-video-list">
+                <div class="pagination-frame" id="paginationCtrl">
+                    <center>
+                        <div class="pagination " id="pageController">
+                        </div>
+                        <div class="display-none" id="select-limit">
+                            <!-- <div class="float-left">
+                                <label for="input-select-limit">
+                                    Hiển thị
                                 </label>
-                                <textarea name="string" ngchange="string" ngmaxlength="number" ngminlength="number" ngmodel="string" ngpattern="string" ngrequired="string" placeholder="Nhập nội dung tại đây..." required="" style="height: 100px">
-                                </textarea>
-                                <input type="submit" value="Submit">
-                                </input>
-                            </input>
-                        </input>
-                    </input>
-                </form>
+                                <select id="input-select-limit">
+                                    <option value="4">
+                                        6
+                                    </option>
+                                    <option value="bar">
+                                        9
+                                    </option>
+                                    <option value="quux">
+                                        12
+                                    </option>
+                                </select>
+                            </div> -->
+                        </div>
+                    </center>
+                </div>
+                <div id="video-list">
+                </div>
+                <div class="pagination">
+                </div>
             </div>
-            <!-- The Modal -->
-            <div class="modal" id="myModal">
-                <!-- Modal content -->
+            <!--  <div class="col-3 right">
+                <div class="aside">
+                    <h2>
+                        What?
+                    </h2>
+                    <p>
+                        Chania is a city on the island of Crete.
+                    </p>
+                    <h2>
+                        Where?
+                    </h2>
+                    <p>
+                        Crete is a Greek island in the Mediterranean Sea.
+                    </p>
+                    <h2>
+                        How?
+                    </h2>
+                    <p>
+                        You can reach Chania airport from all over Europe.
+                    </p>
+                </div>
+            </div> -->
+        </div>
+        <div class="footer trans-background">
+            <p>
+                ©2017 Thân Văn Lâm-C1707G
+            </p>
+            <p>
+                Mọi ý kiến góp ý xin gửi về tvl.spds@gmail.com
+            </p>
+        </div>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <!-- Modal content -->
+            <div class="modal-content-conatainer">
                 <div class="modal-content">
                     <span class="close" id="modal-close">
                         ×
                     </span>
-                    <span class="close" id="modal-restore">
-                        []
+                    <span class="restore" id="modal-restore">
+                        <!-- <img style="width: 20px;" src="rs/maximize-2-512.png" alt=""> -->
                     </span>
                     <span class="minimize" id="modal-minimize">
                         _
                     </span>
-                    <div id="frame-play">
+                    <div id="frame-play-container">
+                        <div id="frame-play">
+                            <div id="video-detail">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- end modal -->
+        </div>
+        <!-- end modal -->
+        <!-- -->
+        <!-- The add Video Modal -->
+        <div class="modal" id="add-video-modal">
+            <!-- Modal content -->
+            <div class="modal-content-conatainer">
+                <div class="modal-content">
+                    <div>
+                        <span class="close" id="add-modal-close">
+                            ×
+                        </span>
+                    </div>
+                    <div class="add-video-container">
+                        <div class="add-video-form ">
+                            <form accept-charset="utf-8" action="index_submit" method="post">
+                                <div class="">
+                                    <div class="row">
+                                        <label for="video-id">
+                                            Video ID:
+                                        </label>
+                                        <div class="form-control">
+                                            <input class="w-50" id="video-id" name="video-id" placeholder="Nhập video id" required="" type="text"/>
+                                            <span class="msg-error" id="video-id-error">
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="video-name">
+                                            Video Name:
+                                        </label>
+                                        <div class="form-control">
+                                            <input class="w-75" id="video-name" name="video-name" placeholder="Nhập tên video" required="" type="text">
+                                                <span class="msg-error" id="video-name-error">
+                                                </span>
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="video-description">
+                                            Video Description:
+                                        </label>
+                                        <div class="form-control">
+                                            <textarea id="video-description" name="video-description" onload="" placeholder="Mô tả video">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="video-keywords">
+                                            Video Keyword:
+                                        </label>
+                                        <div class="form-control">
+                                            <input class="w-75" id="video-keywords" name="video-keywords" placeholder="Các keywords giúp tăng hiệu quả xuất hiện video" required="" type="text">
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="video-genre">
+                                            Genre:
+                                        </label>
+                                        <div class="form-control">
+                                            <input class="w-50" id="video-genre" name="video-genre" placeholder="Thể loại video" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="form-video-category">
+                                            Video Category:
+                                        </label>
+                                        <div class="form-control" id="form-video-category">
+                                            <input name="video-category" type="checkbox" value="Game"/>
+                                            Game
+                                            <input name="video-category" type="checkbox" value="Music"/>
+                                            Music
+                                            <input name="video-category" type="checkbox" value="Trailer"/>
+                                            Trailer
+                                            <input name="video-category" type="checkbox" value="Others"/>
+                                            Others
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="status">
+                                            Status
+                                        </label>
+                                        <div class="form-control">
+                                            <input name="status" type="checkbox">
+                                                Active
+                                            </input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="invisible">
+                                            action
+                                        </label>
+                                        <div class="form-control">
+                                            <input name="Submit" onclick="return isValidForm();" type="button" value="Submit"/>
+                                            <input name="resetButton" type="reset" value="Reset"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end add video modal -->
+        <script src="./js/jquery-3.2.1.min.js" type="text/javascript">
+        </script>
+        <script src="./js/smoothScroll.js" type="text/javascript">
+        </script>
+        <script src="./js/script.js" type="text/javascript">
+        </script>
+        <!--  <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+        </script> -->
+        <!-- ltvtube -->
+        <script>
+            paginate(location.href);
+            deleteFunction();
+        </script>
+        <div id="loader">
         </div>
     </body>
-    <script src="./js/jquery-3.2.1.min.js" type="text/javascript">
-    </script>
-    <script src="./js/smoothScroll.js" type="text/javascript">
-    </script>
-    <script src="./js/script.js" type="text/javascript">
-    </script>
-    <script>
-        loadData(1,4);
-    </script>
 </html>

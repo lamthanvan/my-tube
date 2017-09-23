@@ -13,7 +13,7 @@ function smoothScroll() {
                     // Only prevent default if animation is actually gonna happen
                     event.preventDefault();
                     $('html, body').animate({
-                        scrollTop: target.offset().top-100
+                        scrollTop: target.offset().top - 100
                     }, 1000, function() {
                         //Callback after animation
                         //Must change focus!
@@ -29,4 +29,29 @@ function smoothScroll() {
                 }
             }
         });
+}
+window.onscroll = function() {
+    scrollFunction()
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 120 || document.documentElement.scrollTop > 120) {
+        document.getElementById("topnav-container").style.top = "-50px";
+    } else {
+        document.getElementById("topnav-container").style.top = "0";
+    }
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+        document.getElementById("top-banner").className = "disappear";
+    }else{
+        document.getElementById("top-banner").className = "appear";
+    }
+}
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function topBarResponsive() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
 }

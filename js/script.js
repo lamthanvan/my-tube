@@ -1,8 +1,23 @@
-var apiUrl = "http://youtube-video-api-1608.appspot.com/youtube/api";
+var apiUrl = "https://youtube-video-api-1608.appspot.com/youtube/api";
 var player;
 var vidArray = new Array();
+// var ua = window.navigator.userAgent;
+// console.log(ua);
+function msieversion() {
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    if (msie > 0) // If Internet Explorer, return version number
+    {
+        alert(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
+    } else // If another browser, return 0
+    {
+        alert('otherbrowser');
+    }
+    return false;
+}
+// window.onload = msieversion();
 $(document).ready(function() {
-    apiUrl = "http://youtube-video-api-1608.appspot.com/youtube/api";
+    apiUrl = "https://youtube-video-api-1608.appspot.com/youtube/api";
     var videoId, name, description, keywords, genre, category;
     // init();
 });
@@ -40,9 +55,9 @@ function isValidForm() {
     if (name.length <= 0) {
         isValid = false;
         nameError.innerHTML = "* Vui lòng nhập tên video";
-    } else if (name.length > 60) {
+    } else if (name.length > 100) {
         isValid = false;
-        nameError.innerHTML = "* Vui lòng nhập tên video có độ dài nhỏ hơn 60 ký tự.";
+        nameError.innerHTML = "* Vui lòng nhập tên video có độ dài nhỏ hơn 100 ký tự.";
     } else {
         nameError.innerHTML = "Hợp lệ";
         nameError.className = "msg-success";
@@ -96,7 +111,7 @@ function handleForm() {
         type: 'POST',
         success: function() {
             alert('Thêm thành công ' + name);
-            var main = document.getElementById('video-list');
+            var main = document.getElementById('paginationCtrl');
             var vid = videoId;
             var divLink = "<div class='btnShow' onclick=\"return callModal('" + vid + "');\"/>";
             // console.log(divLink);
@@ -111,7 +126,7 @@ function handleForm() {
             //thêm class, id
             // divContainer.classList.add('col2'); //"pl-container";
             // divContainer.classList.add(' no-boder');
-            divContainer.className = 'col2';
+            divContainer.className = 'col-1';
             divFrame.className = "content-container"; //"pl-frame";
             divPlayer.className = "content"; //"player";
             // linkVidName.className = "pl-vid-name";
@@ -133,7 +148,7 @@ function handleForm() {
             divFrame.append(divLinkName);
             divContainer.append(divFrame);
             //tổng               
-            main.prepend(divContainer);
+            main.appendChild(divContainer);
             // console.log(main[i]);
         },
         error: function() {
@@ -142,7 +157,34 @@ function handleForm() {
     });
 }
 
-function findVideoById(videoId) {}
+function findVideoById(videoId) {
+    var len;
+    $.ajax({
+        url: apiUrl,
+        // contentType: 'application/json; charset=UTF-8',
+        type: 'GET',
+        success: function(rsData, status) {
+            var i = 0;
+            while (i in rsData) {
+                // console.log(videoId);
+                // console.log(rsData[i]);
+                if (videoId === rsData[i].videoId) {
+                    console.log('loop: ' + i + ' found!');
+                    console.log(rsData[i]);
+                    return rsData[i];
+                } else {
+                    console.log('loop: ' + i + ' not found!');
+                    i++;
+                    // return false;
+                }
+            }
+        },
+        error: function() {
+            // alert('Failed!');
+            console.log('Get data Failed!!!!!');
+        }
+    })
+}
 //Hiển thị ra video vừa add
 function lastestAdded(pVideo) {}
 
@@ -154,26 +196,90 @@ function getUrlVars() {
     return vars;
 }
 
-function pagninate(href) {
-    var flag = true;
+function deleteFunction() {
+    //var lstVideoDom = document.getElementsByClassName('video-name');
+    //var lstVideoDom = document.getElementById('video-list');
+    var divBtnDel = document.createElement('div');
+    var btnDel = document.createElement('input');
+    divBtnDel.className = 'btnDel';
+    btnDel.type = 'button'
+    btnDel.innerHTML = 'Delete';
+    divBtnDel.innerHTML = btnDel;
+    // lstVideoDom.appendChild(divBtnDel) ;
+    $('.video-name').append(divBtnDel);
+    console.log(divBtnDel);
+}
+
+function deleteVideo(vid) {
+    $.ajax({
+        url: apiUrl + '?videoId=' + vid,
+        method: 'delete',
+        success: function() {
+            console.log('DELETED');
+        },
+        error: function() {
+            console.log("error");
+        }
+    });
+}
+
+function processAjaxData(response, urlPath) {
+    document.getElementById("content").innerHTML = response.html;
+    document.title = response.pageTitle;
+    window.history.pushState({
+        "html": response.html,
+        "pageTitle": response.pageTitle
+    }, "", urlPath);
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function showPage() {
+    document.getElementById('loader').style.display = "none";
+    document.getElementById('video-list').style.display = "block";
+    document.getElementById('select-limit').style.display = "block";
+    document.getElementById('main-video-list').className += " comfort-bg";
+}
+
+function showLoader() {
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("video-list").style.display = "none";
+    document.getElementById('select-limit').style.display = "none";
+    // document.getElementById('main-video-list').className = "col-9";
+}
+var flag = true;
+
+function paginate(href) {
     var url = new URL(href);
-    var page = url.searchParams.get("page");
+    var page = getParameterByName("page", url);
+    // var page = url.searchParams.get("page");
     var currentPage;
-    var limit = url.searchParams.get("limit");
+    var limit = getParameterByName("limit", url);
+    // console.log('get para limit rs: '+limit);
     var totalPage;
     var divPageCtrl = document.getElementById('pageController');
     var alink;
+    //set default page number and litmit
+    //mặc định trang, limit
     if (!page) {
         flag = false;
         page = 1;
         currentPage = page;
         if (!limit) {
-            limit = 8; //set mặc định không có tham số = 8
+            limit = 6; //set mặc định không có tham số 
         }
         // location.href = url + '?page=' + currentPage + '&limit=' + limit;
     } else {
         if (!limit) {
-            limit = 8; //set mặc định không có tham số = 8
+            limit = 6; //set mặc định không có tham số 
         }
         currentPage = page;
     }
@@ -182,19 +288,56 @@ function pagninate(href) {
     $.ajax({
         url: apiUrl,
         type: 'GET',
-        success: function(rsData) {
+        success: function(rsData) { //Tính tổng số trang cần thiết để hiển thị $limit video
+            // console.log('Data length '+rsData.length);
             totalPage = Math.ceil(rsData.length / limit);
             console.log('get limit: ' + limit);
             console.log('Total page: ' + totalPage);
             ////tạo vòng lặp để đẩy hiển thị phân trang
             ///
             for (var i = 1; i < totalPage + 1; i++) {
-                alink  = document.createElement('a');
+                alink = document.createElement('a');
+                alink.className = 'paging';
                 alink.innerHTML = i;
                 alink.href = '?page=' + i;
+                alink.rel = '?page=' + i;
+                // alink.onclick = function(e) {
+                //     showLoader();
+                //     document.getElementById('video-list').innerHTML = "";
+                //     e.preventDefault();
+                //     var targetUrl = '?page=' + linkIndex[2] + '&limit=' + limit;
+                //     console.log("target url: " + targetUrl);
+                //     $.ajax({
+                //         url: apiUrl + targetUrl,
+                //         type: "GET",
+                //         success: function() {
+                //             console.log("Create pagination done");
+                //             flag = false;
+                //             divPageCtrl.innerHTML = "";
+                //             // return false;
+                //             window.location.replace(targetUrl);
+                //             // document.location.hash = url;
+                //             // history.pushState('data to be passed', 'Title of the page', url);
+                //             paginate(location.href + targetUrl);
+                //             console.log('Clicked url: ' + location.href + targetUrl);
+                //         },
+                //         error: function() {
+                //             alert("testing error");
+                //         }
+                //     });
+                // }
+                //Tránh tạo lại khối phân trang khi click chuyển page
                 divPageCtrl.appendChild(alink);
             }
-            divPageCtrl.append('Current page: ' + currentPage + ' videos/Page: ' + limit);
+            alink = document.createElement('a');
+            alink.className = 'paging';
+            alink.innerHTML = '&laquo;';
+            divPageCtrl.prepend(alink);
+            alink = document.createElement('a');
+            alink.className = 'paging';
+            alink.innerHTML = '&raquo;';
+            divPageCtrl.appendChild(alink);;
+            // divPageCtrl.append('Current page: ' + currentPage + ' videos/Page: ' + limit);
             //////
         },
         error: function() {
@@ -207,20 +350,17 @@ function pagninate(href) {
         // contentType: 'application/json; charset=UTF-8',
         type: 'GET',
         success: function(rsData, status) {
-            if (totalPage <= 1) {
-                this.currentPage = 1;
-            } else {}
-          
-            loadData(rsData, currentPage, limit);
+            loadData(rsData);
         },
         error: function() {
             // alert('Failed!');
             console.log('Get data Failed!!!!!');
         }
-    })
+    });
 }
 
-function loadData(rsData, page, limit) {
+function loadData(rsData) {
+    showPage();
     // alert('ok');
     // console.log("Làm tròn "+Math.ceil(3.05));
     var main = document.getElementById('video-list');
@@ -242,15 +382,15 @@ function loadData(rsData, page, limit) {
         var divPlayer = document.createElement('div');
         var imgPreview = document.createElement('img');
         var divLinkName = document.createElement('div');
-        var linkVidName = document.createElement('h5');
+        var linkVidName = document.createElement('span');
         var divBtnShow = document.createElement('div')
         var spanButton = document.createElement('span');
         //thêm class, id
         // divContainer.classList.add('col2'); //"pl-container";
         // divContainer.classList.add(' no-boder');
-        divContainer.className = 'col2';
-        divFrame.className = "content-container"; //"pl-frame";
-        divPlayer.className = "content"; //"player";
+        divContainer.className = 'video-gl-container';
+        divFrame.className = "video-content-container"; //"pl-frame";
+        divPlayer.className = "video-content"; //"player";
         // linkVidName.className = "pl-vid-name";
         imgPreview.className = "img-preview";
         // divBtnShow.className = "btnShow";
@@ -276,7 +416,17 @@ function loadData(rsData, page, limit) {
         divLinkName.append(linkVidName);
         divFrame.append(divLinkName);
         divContainer.append(divFrame);
-        //tổng               
+        //tổng 
+        // main.innerHTML = '<div id="select-limit"> ';
+        // main.innerHTML += ' <div class="float-left">';
+        // main.innerHTML += '     <label for="input-select-limit">Hiển thị</label>';
+        // main.innerHTML += '     <select id = "input-select-limit">';
+        // main.innerHTML += '         <option value = "6" >6</option>';
+        // main.innerHTML += '         <option value = "9" >9</option>';
+        // main.innerHTML += '         <option value = "12">12</option>';
+        // main.innerHTML += '     </select>';
+        // main.innerHTML += ' < /div>';
+        // main.innerHTML += '</div > ';
         main.appendChild(divContainer);
         // console.log(main[i]);
         // }
@@ -305,11 +455,13 @@ function callModal(vid) {
     var minimize = document.getElementById('modal-minimize');
     var restore = document.getElementById('modal-restore');
     var close = document.getElementById("modal-close");
+    var videoDetail = document.getElementById('video-detail');
     //var playerHTML = ""; //width='"+width+"' height='"+height+"'
     var playerHTML = "<iframe id='iframe' src='https://www.youtube.com/embed/" + vid + "?version=3&enablejsapi=1'";
     playerHTML += " frameborder='0' allowfullscreen>";
     playerHTML += "</iframe>";
     frame.innerHTML = playerHTML;
+    // frame.prepend()
     var iframe = document.getElementById('iframe');
     // Get the button that opens the modal
     // var btn = document.getElementById("myBtn");
@@ -325,6 +477,7 @@ function callModal(vid) {
     minimize.onclick = function() {
         modal.className = 'modal-mini';
         iframe.className = 'minimize-player';
+        // videoDetail.className ='video-detail-minimode';
     }
     restore.onclick = function() {
         modal.className = 'modal';
@@ -338,6 +491,16 @@ function callModal(vid) {
     // window.onclick = function(event) {
     //     if (event.target == modal) {
     //         modal.style.display = "none";
+    //         frame.innerHTML = "";
     //     }
     // }
+}
+// call add video modal
+function addVideoModal() {
+    var modal = document.getElementById('add-video-modal');
+    var close = document.getElementById("add-modal-close");
+    modal.style.display = "block";
+    close.onclick = function() {
+        modal.style.display = "none";
+    }
 }

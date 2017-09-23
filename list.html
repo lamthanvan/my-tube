@@ -11,9 +11,14 @@
         </link>
         <link href="./css/pagination.css" rel="stylesheet">
         </link>
+        <link href="./css/responsive.css" rel="stylesheet">
+        </link>
         <title>
             LTV C1707G
         </title>
+        <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+        </script>
+        <!-- ltvtube -->
     </head>
     <body onload="smoothScroll();">
         <div class="global-container">
@@ -25,17 +30,17 @@
                         </span>
                     </div>
                 </a>
-                <a href="#anchor-view">
+                <a href="index.html">
                     <div class="sidenav-component" id="view">
                         <span>
-                            video
+                            add video
                         </span>
                     </div>
                 </a>
-                <a href="#anchor-contact">
+                <a href="list.html">
                     <div class="sidenav-component" id="contact">
                         <span>
-                            Liên hệ
+                            DS Video
                         </span>
                     </div>
                 </a>
@@ -55,6 +60,14 @@
                                 </div>
                                 <!--    ltv -->
                             </div>
+                            <div class="ads">
+                                <ins class="adsbygoogle" data-ad-client="ca-pub-4351887922144259" data-ad-slot="3789162588" style="display:inline-block;width:728px;height:90px">
+                                </ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                    console.log('google ads');
+                                </script>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,32 +77,10 @@
                             <div class="gl-pl-container" id="video-list">
                             </div>
                             <div class="pagination-frame">
-                                <div class="pagination" id="pageController">
-                                   <!--  <a href="#">
-                                        «
-                                    </a>
-                                    <a href="#">
-                                        1
-                                    </a>
-                                    <a class="active" href="#">
-                                        2
-                                    </a>
-                                    <a href="#">
-                                        3
-                                    </a>
-                                    <a href="#">
-                                        4
-                                    </a>
-                                    <a href="#">
-                                        5
-                                    </a>
-                                    <a href="#">
-                                        6
-                                    </a>
-                                    <a href="#">
-                                        »
-                                    </a> -->
-                                </div>
+                                <center>
+                                    <div class="pagination" id="pageController">
+                                    </div>
+                                </center>
                             </div>
                         </section>
                     </div>
@@ -165,23 +156,44 @@
             <!-- The Modal -->
             <div class="modal" id="myModal">
                 <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close" id="modal-close">
-                        ×
-                    </span>
-                    <span class="restore" id="modal-restore">
-                        <!-- <img style="width: 20px;" src="rs/maximize-2-512.png" alt=""> -->
-                    </span>
-                    <span class="minimize" id="modal-minimize">
-                        _
-                    </span>
-                    <div id="frame-play">
+                <div class="modal-content-conatainer">
+                    <div class="modal-content">
+                        <span class="close" id="modal-close">
+                            ×
+                        </span>
+                        <span class="restore" id="modal-restore">
+                            <!-- <img style="width: 20px;" src="rs/maximize-2-512.png" alt=""> -->
+                        </span>
+                        <span class="minimize" id="modal-minimize">
+                            _
+                        </span>
+                        <div id="frame-play-container">
+                            <div id="frame-play">
+                                <div id="video-detail">
+                                    detail
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- end modal -->
         </div>
     </body>
+    <!--  <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js">
+    </script>
+    <script>
+        // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAwU2Rh0BsXcovNrglAvJOAzc2qlRarPa0",
+    authDomain: "itube-180703.firebaseapp.com",
+    databaseURL: "https://itube-180703.firebaseio.com",
+    projectId: "itube-180703",
+    storageBucket: "itube-180703.appspot.com",
+    messagingSenderId: "923286082474"
+  };
+  firebase.initializeApp(config);
+    </script> -->
     <script src="./js/jquery-3.2.1.min.js" type="text/javascript">
     </script>
     <script src="./js/smoothScroll.js" type="text/javascript">
@@ -190,6 +202,7 @@
     </script>
     <script>
         // loadData(1,10);     
-        pagninate(location.href);
+        paginate(location.href);
+        findVideoById('eis11j_iGMs');
     </script>
 </html>
