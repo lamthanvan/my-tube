@@ -637,20 +637,24 @@ div.view {
 }
 
 .mini-add-video-box {
-   width: 40%;
-   /*background: #fff;*/
-   display: block;
-   float: left;
-   padding: 10px;
+    width: 40%;
+    /*background: #fff;*/
+    display: block;
+    float: left;
+    padding: 10px;
 }
+
+
 /*mini list video frame at right side*/
-.mini-lstvid-fr{
+
+.mini-lstvid-fr {
     display: block;
     width: 55%;
     margin-left: 10px;
     padding: 10px;
     float: left;
 }
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="mini-ad-video-box"] {
@@ -671,7 +675,7 @@ div.view {
     /* Stay in place */
     z-index: 100;
     /* Sit on top */
-    padding-top: 100px;
+    padding-top: 50px;
     /* Location of the box */
     left: 0;
     bottom: 0;
@@ -691,14 +695,21 @@ div.view {
 
 
 /* Modal Content */
-
+.modal-content-container{
+    width: 100%;
+    display: inline-block;
+    margin: 10% auto;
+    /*margin*/
+}
 .modal-content {
-    /*position: inherit;*/
+    /*position: relative;*/
+    display: block;
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    z-index: 200;
 }
 
 
@@ -717,6 +728,7 @@ div.view {
     cursor: pointer;
 }
 
+
 /*restore button*/
 
 .restore {
@@ -727,12 +739,12 @@ div.view {
     background-image: url("../rs/maximize-2-512.png");
     background-size: 16px 16px;
     background-repeat: no-repeat;
-    background-position: bottom; 
+    background-position: bottom;
     width: 18px;
     height: 18px;
     bottom: -5px;
     position: relative;
-    margin:0 5px 0 5px;
+    margin: 0 5px 0 5px;
     opacity: 0.5;
 }
 
@@ -742,6 +754,8 @@ div.view {
     text-decoration: none;
     cursor: pointer;
 }
+
+
 /*Minimize button*/
 
 .minimize {
@@ -770,8 +784,8 @@ div.view {
     z-index: 100;
     /* Sit on top */
     /* Location of the box */
-    left: -5px;
-    bottom: 0px;
+    left: 50px;
+    bottom: 10px;
     width: auto;
     display: inline-block;
     /* Full width */
@@ -790,6 +804,7 @@ div.view {
 
 .modal-mini .modal-content {
     padding: 10px;
+    display: inline-block;
 }
 
 

@@ -7,7 +7,9 @@
 }
 
 .pagination {
-    width: 50%;
+    min-width: 20%;
+    width: 30%;
+    max-width: 60%;
     margin: 0 auto;
     text-align: center;
 }
@@ -27,4 +29,10 @@
 
 .pagination a:hover:not(.active) {
     background-color: #ddd;
+}
+.pagination-light a{
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    /*background: #E8E8E8;*/
 }

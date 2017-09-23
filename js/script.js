@@ -1,8 +1,8 @@
-var apiUrl = "http://youtube-video-api-1608.appspot.com/youtube/api";
+var apiUrl = "https://youtube-video-api-1608.appspot.com/youtube/api";
 var player;
 var vidArray = new Array();
 $(document).ready(function() {
-    apiUrl = "http://youtube-video-api-1608.appspot.com/youtube/api";
+    apiUrl = "https://youtube-video-api-1608.appspot.com/youtube/api";
     var videoId, name, description, keywords, genre, category;
     // init();
 });
@@ -40,9 +40,9 @@ function isValidForm() {
     if (name.length <= 0) {
         isValid = false;
         nameError.innerHTML = "* Vui lòng nhập tên video";
-    } else if (name.length > 60) {
+    } else if (name.length > 100) {
         isValid = false;
-        nameError.innerHTML = "* Vui lòng nhập tên video có độ dài nhỏ hơn 60 ký tự.";
+        nameError.innerHTML = "* Vui lòng nhập tên video có độ dài nhỏ hơn 100 ký tự.";
     } else {
         nameError.innerHTML = "Hợp lệ";
         nameError.className = "msg-success";
@@ -96,7 +96,7 @@ function handleForm() {
         type: 'POST',
         success: function() {
             alert('Thêm thành công ' + name);
-            var main = document.getElementById('video-list');
+            var main = document.getElementById('paginationCtrl');
             var vid = videoId;
             var divLink = "<div class='btnShow' onclick=\"return callModal('" + vid + "');\"/>";
             // console.log(divLink);
@@ -133,7 +133,7 @@ function handleForm() {
             divFrame.append(divLinkName);
             divContainer.append(divFrame);
             //tổng               
-            main.prepend(divContainer);
+            main.appendChild(divContainer);
             // console.log(main[i]);
         },
         error: function() {
@@ -142,7 +142,34 @@ function handleForm() {
     });
 }
 
-function findVideoById(videoId) {}
+function findVideoById(videoId) {
+    var len;
+    $.ajax({
+        url: apiUrl,
+        // contentType: 'application/json; charset=UTF-8',
+        type: 'GET',
+        success: function(rsData, status) {
+            var i = 0;
+            while (i in rsData) {
+                // console.log(videoId);
+                // console.log(rsData[i]);
+                if (videoId === rsData[i].videoId) {
+                    console.log('loop: ' + i + ' found!');
+                    console.log(rsData[i]);
+                    return rsData[i];
+                } else {
+                    console.log('loop: ' + i + ' not found!');
+                    i++;
+                    // return false;
+                }
+            }
+        },
+        error: function() {
+            // alert('Failed!');
+            console.log('Get data Failed!!!!!');
+        }
+    })
+}
 //Hiển thị ra video vừa add
 function lastestAdded(pVideo) {}
 
@@ -154,7 +181,43 @@ function getUrlVars() {
     return vars;
 }
 
-function pagninate(href) {
+function deleteFunction() {
+    //var lstVideoDom = document.getElementsByClassName('video-name');
+    //var lstVideoDom = document.getElementById('video-list');
+    var divBtnDel = document.createElement('div');
+    var btnDel = document.createElement('input');
+    divBtnDel.className = 'btnDel';
+    btnDel.type = 'button'
+    btnDel.innerHTML = 'Delete';
+    divBtnDel.append(btnDel);
+    // lstVideoDom.appendChild(divBtnDel) ;
+    $('.video-name').append(divBtnDel);
+    console.log(divBtnDel);
+}
+
+function deleteVideo(vid) {
+    $.ajax({
+        url: apiUrl + '?videoId=' + vid,
+        method: DELETE,
+        success: function() {
+            console.log('DELETED');
+        },
+        error: function() {
+            console.log("error");
+        }
+    });
+}
+
+function processAjaxData(response, urlPath) {
+    document.getElementById("content").innerHTML = response.html;
+    document.title = response.pageTitle;
+    window.history.pushState({
+        "html": response.html,
+        "pageTitle": response.pageTitle
+    }, "", urlPath);
+}
+
+function paginate(href) {
     var flag = true;
     var url = new URL(href);
     var page = url.searchParams.get("page");
@@ -189,12 +252,43 @@ function pagninate(href) {
             ////tạo vòng lặp để đẩy hiển thị phân trang
             ///
             for (var i = 1; i < totalPage + 1; i++) {
-                alink  = document.createElement('a');
+                alink = document.createElement('a');
+                alink.className = 'paging';
                 alink.innerHTML = i;
                 alink.href = '?page=' + i;
+                alink.rel = '?page=' + i;
+                // alink.onclick = function(e) {
+                //     e.preventDefault();
+                //     var targetUrl = '?page=' + i + '&limit=' + limit;
+                //     console.log("target url: " + targetUrl);
+                //     $.ajax({
+                //         url: apiUrl + targetUrl,
+                //         type: "GET",
+                //         success: function() {
+                //             console.log("done");
+                //             // return false;
+                //             // window.location.replace("http://stackoverflow.com");
+                //             // document.location.hash = url;
+                //             // history.pushState('data to be passed', 'Title of the page', url);
+                //             paginate(location.href + targetUrl);
+                //             console.log('Clicked url: ' + location.href + targetUrl);
+                //         },
+                //         error: function() {
+                //             alert("testing error");
+                //         }
+                //     });
+                // }
                 divPageCtrl.appendChild(alink);
             }
-            divPageCtrl.append('Current page: ' + currentPage + ' videos/Page: ' + limit);
+            alink = document.createElement('a');
+            alink.className = 'paging';
+            alink.innerHTML = '&laquo;';
+            divPageCtrl.prepend(alink);
+            alink = document.createElement('a');
+            alink.className = 'paging';
+            alink.innerHTML = '&raquo;';
+            divPageCtrl.appendChild(alink);;
+            // divPageCtrl.append('Current page: ' + currentPage + ' videos/Page: ' + limit);
             //////
         },
         error: function() {
@@ -210,17 +304,16 @@ function pagninate(href) {
             if (totalPage <= 1) {
                 this.currentPage = 1;
             } else {}
-          
-            loadData(rsData, currentPage, limit);
+            loadData(rsData);
         },
         error: function() {
             // alert('Failed!');
             console.log('Get data Failed!!!!!');
         }
-    })
+    });
 }
 
-function loadData(rsData, page, limit) {
+function loadData(rsData) {
     // alert('ok');
     // console.log("Làm tròn "+Math.ceil(3.05));
     var main = document.getElementById('video-list');
@@ -276,7 +369,7 @@ function loadData(rsData, page, limit) {
         divLinkName.append(linkVidName);
         divFrame.append(divLinkName);
         divContainer.append(divFrame);
-        //tổng               
+        //tổng 
         main.appendChild(divContainer);
         // console.log(main[i]);
         // }
@@ -305,11 +398,13 @@ function callModal(vid) {
     var minimize = document.getElementById('modal-minimize');
     var restore = document.getElementById('modal-restore');
     var close = document.getElementById("modal-close");
+    var videoDetail = document.getElementById('video-detail');
     //var playerHTML = ""; //width='"+width+"' height='"+height+"'
     var playerHTML = "<iframe id='iframe' src='https://www.youtube.com/embed/" + vid + "?version=3&enablejsapi=1'";
     playerHTML += " frameborder='0' allowfullscreen>";
     playerHTML += "</iframe>";
     frame.innerHTML = playerHTML;
+    // frame.prepend()
     var iframe = document.getElementById('iframe');
     // Get the button that opens the modal
     // var btn = document.getElementById("myBtn");
@@ -325,6 +420,7 @@ function callModal(vid) {
     minimize.onclick = function() {
         modal.className = 'modal-mini';
         iframe.className = 'minimize-player';
+        // videoDetail.className ='video-detail-minimode';
     }
     restore.onclick = function() {
         modal.className = 'modal';
@@ -335,9 +431,10 @@ function callModal(vid) {
         frame.innerHTML = "";
     }
     // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal.style.display = "none";
-    //     }
-    // }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            frame.innerHTML = "";
+        }
+    }
 }
